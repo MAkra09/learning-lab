@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", 
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,       // ✅ สำหรับ import module
+    "resolveJsonModule": true,     // ✅ สำหรับ import .json
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
