@@ -1,47 +1,14 @@
 import { expect, test } from "@playwright/test";
+import data from '../data/data.json';
 const baseURL = 'https://crmssp-devsales1.ttbbank.local/rule-management/rules';
 
 test.describe('Create Rule API', () => {
     test('Create rule with API Success', async ({ request }) => {
     const response = await request.post(`${baseURL}/create`, {
-        data: {
-    "statusCode": "inactive",
-    "rulePriority": 11,
-    "ruleName": "Test rule action bug",
-    "ruleTriggers": [
-        "Lead was created"
-    ],
-    "leadOriginations": [
-        "System Initiate",
-        "User Initiate",
-        "Customer Initiate"
-    ],
-    "ruleCriteriaList": [
-        {
-            "sequence": 0,
-            "criteria": "assignRuleModel",
-            "criteriaOperator": "equal",
-            "values": [
-                "ruleStatusActive"
-            ]
-        }
-    ],
-    "ruleActionList": [
-        {
-            "ruleActionType": "Assignment",
-            "ruleActionLevel": "to User (by Emp ID/Name)",
-            "ruleActionValueList": [
-                {
-                    "ruleActionValue": "15151",
-                    "priority": 1
-                }
-            ]
-        }
-    ],
-    "employeeId": "system"
-    }
+        data: data.valid
 });
 
+    // For checking response status
     expect(response.status()).toBe(200);
 
     // For reading response body
@@ -58,44 +25,10 @@ test.describe('Create Rule API', () => {
 
     test('Create rule with API Fail Because of Null Priority', async ({ request }) => {
     const response = await request.post(`${baseURL}/create`, {
-        data: {
-    "statusCode": "inactive",
-    "rulePriority": null,
-    "ruleName": "Test rule action bug",
-    "ruleTriggers": [
-        "Lead was created"
-    ],
-    "leadOriginations": [
-        "System Initiate",
-        "User Initiate",
-        "Customer Initiate"
-    ],
-    "ruleCriteriaList": [
-        {
-            "sequence": 0,
-            "criteria": "assignRuleModel",
-            "criteriaOperator": "equal",
-            "values": [
-                "ruleStatusActive"
-            ]
-        }
-    ],
-    "ruleActionList": [
-        {
-            "ruleActionType": "Assignment",
-            "ruleActionLevel": "to User (by Emp ID/Name)",
-            "ruleActionValueList": [
-                {
-                    "ruleActionValue": "15151",
-                    "priority": 1
-                }
-            ]
-        }
-    ],
-    "employeeId": "system"
-    }
+        data: data.priorityNull
 });
 
+    // For checking response status
     expect(response.status()).toBe(400);
 
     // For reading response body
