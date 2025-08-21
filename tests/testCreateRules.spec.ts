@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 import data from '../data/data.json';
-const baseURL = 'https://crmssp-devsales1.ttbbank.local/rule-management/rules';
+import urlPath from '../data/urlPath.json';
 
 test.describe('Create Rule API', () => {
     test('Create rule with API Success', async ({ request }) => {
-    const response = await request.post(`${baseURL}/create`, {
+    const response = await request.post(`${urlPath.BaseURL}/create`, {
         data: data.valid
 });
 
@@ -24,7 +24,7 @@ test.describe('Create Rule API', () => {
     });
 
     test('Create rule with API Fail Because of Null Priority', async ({ request }) => {
-    const response = await request.post(`${baseURL}/create`, {
+    const response = await request.post(`${urlPath.BaseURL}/create`, {
         data: data.priorityNull
 });
 
