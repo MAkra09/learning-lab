@@ -5,7 +5,7 @@ export class createRules {
   constructor(private context: APIRequestContext) {}
 
   async createRuleValidData(data: any): Promise<any> {
-    const response = await this.context.post(`${urlPath.BaseURL}/create`, {
+    const response = await this.context.post(`${urlPath.BaseURL_API}/create`, {
     data: data.valid
 });
     const body = await response.json();
@@ -20,7 +20,7 @@ export class createRules {
   }
 
   async createRuleInvalidData_rulesPriorityNull(data: any): Promise<any> {
-    const response = await this.context.post(`${urlPath.BaseURL}/create`, {
+    const response = await this.context.post(`${urlPath.BaseURL_API}/create`, {
       data: data.inValid_priorityNull
     });
     const body = await response.json();
@@ -33,7 +33,7 @@ export class createRules {
   }
 
   async createRuleInvalidData_rulesNameIsNullorEmpty(data: any): Promise<any> {
-    const response = await this.context.post(`${urlPath.BaseURL}/create`, {
+    const response = await this.context.post(`${urlPath.BaseURL_API}/create`, {
       data: data.inValid_nameIsNullorEmpty
     });
     const body = await response.json();
@@ -46,7 +46,7 @@ export class createRules {
   }
 
   async createRuleInvalidData_ruleCriteriaIsEmpty(data: any): Promise<any> {
-    const response = await this.context.post(`${urlPath.BaseURL}/create`, {
+    const response = await this.context.post(`${urlPath.BaseURL_API}/create`, {
       data: data.inValid_ruleCriteriaIsEmpty
     });
     const body = await response.json();

@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
-import { createRules } from "../api/createRules";
-import data from '../data/rules-data-detail.json';
+import { createRules } from "../../api/createRules";
+import data from "../../data/Create Rules/valid-data-detail.json";
 
 
 test.describe('Create Rule API', () => {

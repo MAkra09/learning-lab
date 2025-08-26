@@ -73,6 +73,7 @@
     "employeeId": "system"
   },
   
+
   "inValid_nameIsNullorEmpty": {
     "statusCode": "inactive",
     "rulePriority": 1,
@@ -110,6 +111,7 @@
     "employeeId": "system"
   },
 
+  
   "inValid_ruleCriteriaIsEmpty": {
     "statusCode": "inactive",
     "rulePriority": 1,

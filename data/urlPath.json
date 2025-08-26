@@ -1,3 +1,4 @@
 {
-    "BaseURL": "https://crmssp-devsales1.ttbbank.local/rule-management/rules"
+    "_comment": "Base URL for API requests Create Rules",
+    "BaseURL_API": "https://crmssp-devsales1.ttbbank.local/rule-management/rules"
 }
