@@ -1,44 +1,28 @@
 import { expect, test } from "@playwright/test";
-import data from '../data/data.json';
-import urlPath from '../data/urlPath.json';
+import { createRules } from "../api/createRules";
+import data from '../data/rules-data-detail.json';
+
 
 test.describe('Create Rule API', () => {
-    test('Create rule with API Success', async ({ request }) => {
-    const response = await request.post(`${urlPath.BaseURL}/create`, {
-        data: data.valid
-});
+    let createRule: createRules;
 
-    // For checking response status
-    expect(response.status()).toBe(200);
-
-    // For reading response body
-    const body = await response.json();
-    console.log('Response:', body);
-
-    // For checking values within response
-    expect(body.statusCode).toBe("0");
-    expect(body.statusDescription).toBe("Success");
-    expect(body.data).toHaveProperty("ruleId");
-    expect(body.data).toHaveProperty("ruleCode");
-
+    test.beforeEach(({ request }) => {
+        createRule = new createRules(request);
     });
 
-    test('Create rule with API Fail Because of Null Priority', async ({ request }) => {
-    const response = await request.post(`${urlPath.BaseURL}/create`, {
-        data: data.priorityNull
-});
-
-    // For checking response status
-    expect(response.status()).toBe(400);
-
-    // For reading response body
-    const body = await response.json();
-    console.log('Response:', body);
-
-    // For checking values within response
-    expect(body.data).toBeNull();
-    expect(body.statusCode).toBe("1");
-    expect(body.statusDescription).toBe("rulePriority must not be null");
+    test('Create rule with Valid Data', async () => {
+        const response = await createRule.createRuleValidData(data);
     });
 
+    test('Create rule with Invalid Data in Rules Priority Null', async () => {
+        const response = await createRule.createRuleInvalidData_rulesPriorityNull(data);
+    });
+
+    test('Create rule with Invalid Data in Rules Name is Null or Empty', async () => {
+        const response = await createRule.createRuleInvalidData_rulesNameIsNullorEmpty(data);
+    });
+
+    test('Create rule with Invalid Data in Rules Criteria is Empty', async () => {
+        const response = await createRule.createRuleInvalidData_ruleCriteriaIsEmpty(data);
+    });
 });
